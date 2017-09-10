@@ -26,25 +26,53 @@ public class JeepneyTripTest extends TestCase {
   
   public void testChangeNoDiscount() {
     JeepneyTrip t = new JeepneyTrip(5, 1, 0);
-    JeepneyTrip t2 = new JeepneyTrip(5, 2, 0);
+    JeepneyTrip t2 = new JeepneyTrip(7, 2, 0);
     
     assertEquals(3.0, t.fareChange(10));
-    assertEquals(6.0, t2.fareChange(20));
+    assertEquals(4.0, t2.fareChange(20));
   }
   
   public void testChangeDiscount() {
-    JeepneyTrip t = new JeepneyTrip(5, 1, 1);
-    JeepneyTrip t2 = new JeepneyTrip(5, 2, 1);
+    JeepneyTrip t = new JeepneyTrip(1, 1, 1);
+    JeepneyTrip t2 = new JeepneyTrip(7, 2, 1);
     
     assertEquals(4.0, t.fareChange(10));
-    assertEquals(7.0, t2.fareChange(20));
+    assertEquals(5.0, t2.fareChange(20));
   }
   
-  public void tesTotalFareDiscount() {
+  public void testTotalFareDiscount() {
     JeepneyTrip t = new JeepneyTrip(5, 1, 1);
-    JeepneyTrip t2 = new JeepneyTrip(5, 2, 1);
+    JeepneyTrip t2 = new JeepneyTrip(7, 2, 1);
 
     assertEquals(6.0, t.totalFare());
-    assertEquals(13.0, t2.totalFare());
+    assertEquals(15.0, t2.totalFare());
+  }
+  
+  public void testComputeFare() {
+    JeepneyTrip t = new JeepneyTrip(5, 1, 0);
+    JeepneyTrip t2 = new JeepneyTrip(5, 1, 1);
+    
+    assertEquals(7.0, t.computeFare(t.totalPassengers, t.BASE_FARE));
+    assertEquals(6.0, t2.computeFare(t2.discountPassengers, t2.DISC_FARE));
+  }
+  
+  public void testExcessDistancePrice() {
+    JeepneyTrip t = new JeepneyTrip(4, 1, 0);
+    JeepneyTrip t2 = new JeepneyTrip(5, 1, 1);
+    JeepneyTrip t3 = new JeepneyTrip(7, 1, 1);
+    
+    assertEquals(0.0, t.excessDistancePrice());
+    assertEquals(0.0, t2.excessDistancePrice());
+    assertEquals(1.0, t3.excessDistancePrice());
+  }
+  
+  public void testExcessDistance() {
+    JeepneyTrip t = new JeepneyTrip(4, 1, 0);
+    JeepneyTrip t2 = new JeepneyTrip(5, 1, 1);
+    JeepneyTrip t3 = new JeepneyTrip(7, 1, 1);
+    
+    assertEquals(0.0, t.excessDistance());
+    assertEquals(0.0, t2.excessDistance());
+    assertEquals(2.0, t3.excessDistance());
   }
 }
