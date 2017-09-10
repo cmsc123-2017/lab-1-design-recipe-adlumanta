@@ -35,7 +35,7 @@ class JeepneyTrip {
   }
   
   // double, double -> double
-  // Returns the total fare of a specific type of passengers.
+  // Returns the total fare, given a number of certain type of passengers and the corresponding type of fare.
   double computeFare(double passengers, double fare) {
     return passengers * (fare + excessDistancePrice());
   }
@@ -51,6 +51,6 @@ class JeepneyTrip {
   // Returns the change, given the paid fare, total number of passengers,
   // number of passengers with discount, and the trip distance.
   double fareChange(double payment) {
-    return payment - totalFare() ; 
+    return payment - totalFare() ;
   }
 }
