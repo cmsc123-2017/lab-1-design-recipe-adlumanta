@@ -51,6 +51,6 @@ class JeepneyTrip {
   // Returns the change, given the paid fare, total number of passengers,
   // number of passengers with discount, and the trip distance.
   double fareChange(double payment) {
-    return payment - totalFare() ;
+    return payment - totalFare() ; 
   }
 }
